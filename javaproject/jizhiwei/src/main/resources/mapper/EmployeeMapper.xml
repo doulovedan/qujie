@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jizhiwei.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.jizhiwei.entity.Employee">
+    <id column="e_id" jdbcType="INTEGER" property="eId" />
+    <result column="e_name" jdbcType="VARCHAR" property="eName" />
+    <result column="e_email" jdbcType="VARCHAR" property="eEmail" />
+    <result column="e_phone" jdbcType="VARCHAR" property="ePhone" />
+    <result column="e_sex" jdbcType="CHAR" property="eSex" />
+    <result column="e_location_id" jdbcType="INTEGER" property="eLocationId" />
+    <result column="e_dept_id" jdbcType="INTEGER" property="eDeptId" />
+    <result column="salary" jdbcType="DECIMAL" property="salary" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    e_id, e_name, e_email, e_phone, e_sex, e_location_id, e_dept_id, salary
+  </sql>
+  <select id="selectByExample" parameterType="com.jizhiwei.entity.EmployeeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where e_id = #{eId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from employee
+    where e_id = #{eId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jizhiwei.entity.EmployeeExample">
+    delete from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jizhiwei.entity.Employee">
+    insert into employee (e_id, e_name, e_email, 
+      e_phone, e_sex, e_location_id, 
+      e_dept_id, salary)
+    values (#{eId,jdbcType=INTEGER}, #{eName,jdbcType=VARCHAR}, #{eEmail,jdbcType=VARCHAR}, 
+      #{ePhone,jdbcType=VARCHAR}, #{eSex,jdbcType=CHAR}, #{eLocationId,jdbcType=INTEGER}, 
+      #{eDeptId,jdbcType=INTEGER}, #{salary,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jizhiwei.entity.Employee">
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eId != null">
+        e_id,
+      </if>
+      <if test="eName != null">
+        e_name,
+      </if>
+      <if test="eEmail != null">
+        e_email,
+      </if>
+      <if test="ePhone != null">
+        e_phone,
+      </if>
+      <if test="eSex != null">
+        e_sex,
+      </if>
+      <if test="eLocationId != null">
+        e_location_id,
+      </if>
+      <if test="eDeptId != null">
+        e_dept_id,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eId != null">
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="eName != null">
+        #{eName,jdbcType=VARCHAR},
+      </if>
+      <if test="eEmail != null">
+        #{eEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="ePhone != null">
+        #{ePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="eSex != null">
+        #{eSex,jdbcType=CHAR},
+      </if>
+      <if test="eLocationId != null">
+        #{eLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="eDeptId != null">
+        #{eDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jizhiwei.entity.EmployeeExample" resultType="java.lang.Long">
+    select count(*) from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update employee
+    <set>
+      <if test="record.eId != null">
+        e_id = #{record.eId,jdbcType=INTEGER},
+      </if>
+      <if test="record.eName != null">
+        e_name = #{record.eName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eEmail != null">
+        e_email = #{record.eEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ePhone != null">
+        e_phone = #{record.ePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eSex != null">
+        e_sex = #{record.eSex,jdbcType=CHAR},
+      </if>
+      <if test="record.eLocationId != null">
+        e_location_id = #{record.eLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.eDeptId != null">
+        e_dept_id = #{record.eDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="record.salary != null">
+        salary = #{record.salary,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update employee
+    set e_id = #{record.eId,jdbcType=INTEGER},
+      e_name = #{record.eName,jdbcType=VARCHAR},
+      e_email = #{record.eEmail,jdbcType=VARCHAR},
+      e_phone = #{record.ePhone,jdbcType=VARCHAR},
+      e_sex = #{record.eSex,jdbcType=CHAR},
+      e_location_id = #{record.eLocationId,jdbcType=INTEGER},
+      e_dept_id = #{record.eDeptId,jdbcType=INTEGER},
+      salary = #{record.salary,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jizhiwei.entity.Employee">
+    update employee
+    <set>
+      <if test="eName != null">
+        e_name = #{eName,jdbcType=VARCHAR},
+      </if>
+      <if test="eEmail != null">
+        e_email = #{eEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="ePhone != null">
+        e_phone = #{ePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="eSex != null">
+        e_sex = #{eSex,jdbcType=CHAR},
+      </if>
+      <if test="eLocationId != null">
+        e_location_id = #{eLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="eDeptId != null">
+        e_dept_id = #{eDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jizhiwei.entity.Employee">
+    update employee
+    set e_name = #{eName,jdbcType=VARCHAR},
+      e_email = #{eEmail,jdbcType=VARCHAR},
+      e_phone = #{ePhone,jdbcType=VARCHAR},
+      e_sex = #{eSex,jdbcType=CHAR},
+      e_location_id = #{eLocationId,jdbcType=INTEGER},
+      e_dept_id = #{eDeptId,jdbcType=INTEGER},
+      salary = #{salary,jdbcType=DECIMAL}
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+</mapper>
