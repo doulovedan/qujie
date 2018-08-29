@@ -3,83 +3,109 @@ package com.jizhiwei.entity;
 import java.math.BigDecimal;
 
 public class Employee {
-    private Integer eId;
+	private Integer eId;
 
-    private String eName;
+	private String eName;
 
-    private String eEmail;
+	private String eEmail;
 
-    private String ePhone;
+	private String ePhone;
 
-    private String eSex;
+	private String eSex;
 
-    private Integer eLocationId;
+	private Integer eLocationId;
 
-    private Integer eDeptId;
+	private Integer eDeptId;
 
-    private BigDecimal salary;
+	private BigDecimal salary;
 
-    public Integer geteId() {
-        return eId;
-    }
+	private Department department;
+	private Address address;
 
-    public void seteId(Integer eId) {
-        this.eId = eId;
-    }
+	@Override
+	public String toString() {
+		return "Employee [eId=" + eId + ", eName=" + eName + ", eEmail=" + eEmail + ", ePhone=" + ePhone + ", eSex="
+				+ eSex + ", eLocationId=" + eLocationId + ", eDeptId=" + eDeptId + ", salary=" + salary
+				+ ", department=" + department + ", address=" + address + "]";
+	}
 
-    public String geteName() {
-        return eName;
-    }
+	public Department getDepartment() {
+		return department;
+	}
 
-    public void seteName(String eName) {
-        this.eName = eName == null ? null : eName.trim();
-    }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-    public String geteEmail() {
-        return eEmail;
-    }
+	public Address getAddress() {
+		return address;
+	}
 
-    public void seteEmail(String eEmail) {
-        this.eEmail = eEmail == null ? null : eEmail.trim();
-    }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-    public String getePhone() {
-        return ePhone;
-    }
+	public Integer geteId() {
+		return eId;
+	}
 
-    public void setePhone(String ePhone) {
-        this.ePhone = ePhone == null ? null : ePhone.trim();
-    }
+	public void seteId(Integer eId) {
+		this.eId = eId;
+	}
 
-    public String geteSex() {
-        return eSex;
-    }
+	public String geteName() {
+		return eName;
+	}
 
-    public void seteSex(String eSex) {
-        this.eSex = eSex == null ? null : eSex.trim();
-    }
+	public void seteName(String eName) {
+		this.eName = eName == null ? null : eName.trim();
+	}
 
-    public Integer geteLocationId() {
-        return eLocationId;
-    }
+	public String geteEmail() {
+		return eEmail;
+	}
 
-    public void seteLocationId(Integer eLocationId) {
-        this.eLocationId = eLocationId;
-    }
+	public void seteEmail(String eEmail) {
+		this.eEmail = eEmail == null ? null : eEmail.trim();
+	}
 
-    public Integer geteDeptId() {
-        return eDeptId;
-    }
+	public String getePhone() {
+		return ePhone;
+	}
 
-    public void seteDeptId(Integer eDeptId) {
-        this.eDeptId = eDeptId;
-    }
+	public void setePhone(String ePhone) {
+		this.ePhone = ePhone == null ? null : ePhone.trim();
+	}
 
-    public BigDecimal getSalary() {
-        return salary;
-    }
+	public String geteSex() {
+		return eSex;
+	}
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
+	public void seteSex(String eSex) {
+		this.eSex = eSex == null ? null : eSex.trim();
+	}
+
+	public Integer geteLocationId() {
+		return eLocationId;
+	}
+
+	public void seteLocationId(Integer eLocationId) {
+		this.eLocationId = eLocationId;
+	}
+
+	public Integer geteDeptId() {
+		return eDeptId;
+	}
+
+	public void seteDeptId(Integer eDeptId) {
+		this.eDeptId = eDeptId;
+	}
+
+	public BigDecimal getSalary() {
+		return salary;
+	}
+
+	public void setSalary(BigDecimal salary) {
+		this.salary = salary;
+	}
 }

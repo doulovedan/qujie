@@ -3,9 +3,14 @@ package com.jizhiwei.entity;
 public class Department {
     private Integer dId;
 
-    private String dName;
+	private String dName;
 
-    public Integer getdId() {
+    @Override
+	public String toString() {
+		return "Department [dId=" + dId + ", dName=" + dName + "]";
+	}
+
+	public Integer getdId() {
         return dId;
     }
 
